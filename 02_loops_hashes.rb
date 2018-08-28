@@ -3,10 +3,10 @@ def header
     print " " + "No.".upcase.ljust(9)
     print " " + "Name".upcase.ljust(13)
     print " " + "Qnty".upcase.ljust(12)
-    print " " + "Markup".upcase.ljust(13)
+    print " " + "Markup".upcase.ljust(15)
     print " " + "Sales".upcase.ljust(13) 
     print " " + "Profit".upcase.rjust(5) + "\n"
-    puts  "-" * 71
+    puts  "-" * 74
 end
 
 #1. - create a well named variable that contains the amount of time it took you to get to class
@@ -31,7 +31,8 @@ puts sentence.upcase
 
 # print the final drinks order so you know what to make
 
-drinks = [['cocktails', 3], ['waters', 2], ['beers', 6]]
+#drinks = [['cocktails', 3], ['waters', 2], ['beers', 6]]
+drinks = {cocktails: 3, waters: 2, beers: 6}
 #quit = ['q','quit']
 
 print "Welcome, Kel. #{' '.ljust(4)}What would you like to order? Options(cocktails, beers, waters, show, quit) \n:> "
@@ -41,36 +42,41 @@ while true
     system "clear"
     
     case order
-    when drinks[0][0]
-        drinks[0][1] += 1
-    when drinks[1][0]
-        drinks[1][1] += 1
-    when drinks[2][0]
-        drinks[2][1] += 1
+    when "cocktails"
+        drinks[:cocktails] += 1
+    when "beers"
+        drinks[:beers] += 1
+    when "waters"
+        drinks[:waters] += 1
     #when 'show'
         
     else
         puts "Invalid Selection..."
     end
     
+    puts
+
     system 'clear'
     puts "#{' '.ljust(20) }The final drinks order include:".upcase
-
-    drinks.each_with_index do |drink, index|
-      print "#{' '.ljust(20)} [#{index + 1}]"          
-      drink.each do |drink_item|
+    index = 0
+    puts "#{' '.ljust(20)} No. #{' '.rjust(2)}  Drinks #{' '.rjust(6)} Qnty"
+    drinks.each do |drink, num|
         formater = 0
-        case drink_item 
+
+        case drink.to_s
         when 'beers'
-             formater = 9
+            formater = 4
         when 'cocktails'  
-            formater = drink[0].length - 4
+            formater = 0
         when 'waters'     
-            formater = 8
+            formater = 3
         end
-        print " #{drink_item} #{' '.rjust(formater)}".upcase
-      end
-      puts ""
+
+        index +=1
+        print "#{' '.ljust(20)} #{index} #{' '.ljust(5)} #{drink.to_s.capitalize }"
+        print "#{' '.rjust(formater + 5)} [#{num + 1}]"  
+
+        puts ""
     end 
     
     print "#{' '.ljust(4)}What would you like to order? Options(cocktails, beers, waters, show, quit)\n#{' '.ljust(4)}:> "
@@ -90,33 +96,38 @@ sales_price = [22, 12, 6]
 profits    = 0.0
 # Print Table header
 header()
-drinks.each_with_index do |drink, i|
-    print " #{i + 1} #{' '.ljust(6)}"  
+index = 0
+drinks.each do |drink, num|
+    print " #{index + 1} #{' '.ljust(6)}"  
     formater = 0
-    drink.each do |drink_item|        
-        case drink_item 
+    formatr2 = 0
+    # drink.each do |drink_item|        
+        case drink.to_s 
         when 'beers'      
             formater = 10
+            formatr2 = 9
         when 'cocktails'  
-            formater = drink[0].length - 3
+            formater = drink.length - 3
+            formatr2 = 8
         when 'waters'     
             formater = 9
+            formatr2 = 9
         end
-    end
-    total_makes  = (make_price[i]  * drink[1]).to_f.round(2)
-    total_sales  = (sales_price[i] * drink[1]).to_f.round(2)
-
-    print " #{drink[0].upcase} #{' '.rjust(formater)} #{drink[1]}" +
-          "#{' '.rjust(9)} $#{total_makes} #{' '.rjust(9)} $#{total_sales}" +
-          " #{' '.rjust(5)} $#{total_sales - total_makes}"
+    # end
+    total_makes  = (make_price[index]  * num.to_f).round(2)
+    total_sales  = (sales_price[index] * num.to_f).round(2)
+    index += 1
+    print " #{drink.upcase} #{' '.rjust(formater)} #{num}" +
+          "#{' '.rjust(formatr2)} $#{ '%.2f' % total_makes} #{' '.rjust(9)} $#{ '%.2f' % total_sales}" +
+          " #{' '.rjust(5)} $#{ '%.2f' % (total_sales - total_makes)}"
     puts ""
     profits += (total_sales - total_makes).to_f
 end
-print  " " * 63 + "-"*8
-print "\n   #{' '.ljust(7)}Total".upcase + "#{' '.rjust(49)} $#{profits}\n"
-print  " " * 63 + "-"*8
+print  " " * 65 + "-"*9
+print "\n   #{' '.ljust(7)}Total".upcase +  "#{' '.rjust(51)} $#{ '%.2f' % profits}\n"
+print  " " * 65 + "-"*9
 puts   ""
-puts   "-" * 71
+puts   "-" * 74
 
-
+#puts '%.2f' % 3.14159
 # Ctrl + / to get block comments
