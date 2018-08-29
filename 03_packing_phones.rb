@@ -20,3 +20,27 @@
 #    through all the commands you need to write. 
 #
 #    Keep it as simple as you can.
+
+#1. store phone dimensions in an array
+#2. store packaging dimensions in an array
+#3. permut the phone array to find different orientation and then
+#4. divide packaging each dimension by phone dimension and convert to integer
+#4. print the results
+
+phone_dimensions  = [5.0, 7.4, 4.0]
+box_dimension     = [32.0, 43.0, 22.1]
+max_phones = 0
+# phones_num_per_box   = (packaging_dimension[0]/phone_dimensions[0]).to_i *
+#                        (packaging_dimension[1]/phone_dimensions[1]).to_i *
+#                        (packaging_dimension[2]/phone_dimensions[2]).to_i
+
+phone_dimensions.permutation do |orientation|
+  print "#{orientation} \n"
+  num_phones = (box_dimension[0]/orientation[0]).to_i *                       
+               (box_dimension[1]/orientation[1]).to_i *
+               (box_dimension[2]/orientation[2]).to_i
+  
+  max_phones = max_phones >  num_phones ? max_phones : num_phones
+end
+
+puts "#{ max_phones} phones will fit in a [#{box_dimension[0]}cm x #{box_dimension[1]}cm x #{box_dimension[2]}cm] box."
