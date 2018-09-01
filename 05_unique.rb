@@ -24,13 +24,13 @@ brisbane_sku_list  = ["132588", "102333", "268834", "098464", "956698", "081134"
                      ]
 
 
-# Method 1: Remove duplicates from sku list
+# METHOD 1: Remove duplicates from sku list
 new_sku_list = []
 brisbane_sku_list.each do |list_item|
   new_sku_list.push(melbourne_sku_list.include?(list_item) ? list_item : nil)
 end
 
-# Method 2: Remove duplicates from sku list
+# METHOD 2: Remove duplicates from sku list
 # '+' Combine arrays with nesting and perform unique
 print (melbourne_sku_list + brisbane_sku_list).uniq!    
 
