@@ -49,6 +49,6 @@ puts "#{colorize(" Product Summary: ".upcase , $font_colors[:yellow], $bg_colors
      "\n" + 
      "1. #{bases_per_sheet} lamp bases/units will be produced per sheet\n" + 
      "2. #{num_of_sheets} sheets of Plywood will be required \n" +
-     "3. $#{total_cost} will be needed.\n" +
+     "3. $#{total_cost} will be needed.\n" +                                                #"$%.2f".format(moniez)
      "4. A total of #{wasted_plywood} sqmm or " + 
      "#{'%.1f'% (100*wasted_plywood/total_pwd_area.to_f)}% of Plywood will be wasted."
