@@ -13,6 +13,8 @@
 # Check your solution by running the tests:
 # ruby tests/04_vowels_test.rb
 #
+require 'colorize'
+
 VOWELS = ["a","e","i","o","u"]
 #v =~//
 
@@ -114,8 +116,18 @@ text =
 in the user"
 
 puts
-print text.vowels
+print text.vowels.to_s.colorize(:blue)
+require 'io/console'
+require 'highline'
 
+# Basic usage
+
+cli = HighLine.new
+puts 
+pass = cli.ask("Enter your password:  ") { |q| q.echo = "*" }
+p pass
+#print "Please Enter Password: "
+#pass = STDIN.noecho(&:gets).chomp
 =begin
   MOOD BOARDS
   -----------
@@ -130,4 +142,12 @@ print text.vowels
   - A two dimensional illustration of a page's interface
   - Specifically focuses on space allocation & prioritization of content, functionalities
   - 
+
+  PORTFOLIO
+  ---------
+  1. Contacts:  Name, Email, 
+  2. Education: certification
+  3. Links: github, linkedIn
+  4. About: Personality, 
+  5. Home: 
 =end
