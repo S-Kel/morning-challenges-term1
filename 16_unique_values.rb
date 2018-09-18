@@ -17,7 +17,26 @@
 # Check your solution by running the tests:
 # ruby tests/09_unique_test.rb
 #
+#def unique (mylist)
+#   # Your code here
+#   list = [];
+#   mylist.each_with_index do|num, i|
+#     if num != mylist[i+1]
+#       list.push(num)
+#     end
+#   end
+#   return list
+# end
 
-def unique (mylist)
-  # Your code here
+class Unique
+  def self.unique(mylist)
+    mylist.each_with_object([]) do |e, arr|
+      arr << e unless arr.include?(e)
+    end
+  end   
 end
+
+#x = ["kel","tom", "ran", "tom","ran","kel", "tom", "kel"]
+p Unique.unique([1,2,3,3])
+p Unique.unique(["tom", "tom", "tom"])
+p Unique.unique(["kel","tom", "ran", "tom","ran","kel", "tom", "kel"])
