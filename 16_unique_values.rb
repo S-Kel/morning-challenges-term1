@@ -28,12 +28,19 @@
 #   return list
 # end
 
+<<<<<<< HEAD
 class Unique
   def self.unique(mylist)
     mylist.each_with_object([]) do |e, arr|
       arr << e unless arr.include?(e)
     end
   end   
+=======
+def unique (mylist)
+  hash = {}
+  mylist.each { |x| hash[x] = true }
+  hash.keys
+>>>>>>> b028df5d644e116007105a13b9522c8e1282f993
 end
 
 #x = ["kel","tom", "ran", "tom","ran","kel", "tom", "kel"]
