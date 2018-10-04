@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #
 # Page Title
 #
@@ -38,4 +37,3 @@ def pageTitle(url)
   doc = Nokogiri::HTML(open(url))
   doc.search('title').children[0].text
 end
->>>>>>> d785f49315f21edd5329234273e9431f9c199eea
