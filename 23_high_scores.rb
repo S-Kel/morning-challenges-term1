@@ -25,4 +25,48 @@
 
 class HighScoreTable
   # your code here
+  attr_accessor :scores
+  def initialize(max_length = 0)    
+     @scores = Array.new(max_length).compact
+     @max_length = max_length
+  end
+  
+  # def scores     
+  #   @score_table.sort.reverse
+  # end
+  
+  def update(score)   
+    # Append the new score to the high score table 
+    @scores << score
+
+    # Destructively sort then reverse to get a descending sort (i.e. highest scores first)
+    @scores.sort!.reverse!
+
+    # Destructively discard all elements except the first @max_length elements.
+    @scores.slice!(@max_length, @scores.length)    
+  end
+  
+  def reset
+    @scores.clear()
+  end
 end
+
+puts "-" * 45
+highScoreTable = HighScoreTable.new(3)
+p highScoreTable.scores == [] # evaluates to True
+highScoreTable.update(10)
+p highScoreTable.scores
+p highScoreTable.scores == [10]
+
+highScoreTable.update(8)
+highScoreTable.update(12)
+highScoreTable.update(5)
+highScoreTable.update(10)
+highScoreTable.update(15)
+
+p highScoreTable.scores
+p highScoreTable.scores == [12, 10, 10]
+  highScoreTable.reset()
+p highScoreTable.scores == []
+
+puts "-" * 45
