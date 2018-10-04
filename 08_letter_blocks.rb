@@ -40,3 +40,5 @@
 # Extension
 # Use the lots_of_words.txt file to test your code.
 # Now order the words that can be made by length.
+
+puts can_make_word("BOUGHT")
